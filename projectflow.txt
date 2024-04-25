@@ -1,0 +1,7 @@
+1. Create new Git repo, clone it to local.
+2. Setup your template.py and run it: "python template.py"
+3. Add required libraries to requirements.txt
+4. Setup your venv:
+    > conda create -n nerproj python=3.8 -y
+    > conda activate nerproj
+    > pip install -r requirements.txt
