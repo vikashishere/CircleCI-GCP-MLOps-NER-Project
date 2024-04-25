@@ -1,7 +1,13 @@
 1. Create new Git repo, clone it to local.
 2. Setup your template.py and run it: "python template.py"
 3. Add required libraries to requirements.txt
-4. Setup your venv:
+4. Add code to setup.py file
+5. Setup your venv:
     > conda create -n nerproj python=3.8 -y
     > conda activate nerproj
     > pip install -r requirements.txt
+6. Download and install Gcloud CLI, configure it on terminal: gcloud init 
+   (entirely straight forward process, help available on youtube)
+7. Install Pytorch from terminal: (Coz we will use Pytorch based BERT model of HuggingFace)
+   # pip install torch  --extra-index-url https://download.pytorch.org/whl/cpu
+8. Add code to exception, logger and constants(till line 18)
