@@ -33,5 +33,18 @@ we have various pre-trained models available to use. From that list, we are goin
 use 'bert-based-case' model for our NER task. We will do the finetunning of this base model 
 with help of our custom data***
 15. Now we will perform notebook experiment. Add your notebook to G-Colab and connect with T4 GPU.
+    Perform the notebook experiment as per available code.
+16. Work on Data Ingestion component as per out workflow and test it on demo.py
+    (artifacts and log dir will be created, add both to .gitignore: "artifacts/*, logs/*")
 
 
+
+
+
+** Workflows **
+> constants
+> config_entity
+> artifact_entity
+> components
+> pipeline
+> app.py
