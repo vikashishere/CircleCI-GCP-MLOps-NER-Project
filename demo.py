@@ -7,12 +7,19 @@
 
 # -------------------------------------------------------------------------------------------------------------------------
 
-# Demo on Data Ingestion Component
+# Demo on all the Components implemented
 
 import os, sys
 from ner.exception import NerException
 from ner.pipeline.train_pipeline import TrainPipeline
 from ner.constants import *
+
+import warnings
+
+# Filter out non-critical warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", category=FutureWarning)
 
 def training():
     try:
