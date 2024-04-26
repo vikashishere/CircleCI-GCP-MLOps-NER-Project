@@ -11,3 +11,27 @@
 7. Install Pytorch from terminal: (Coz we will use Pytorch based BERT model of HuggingFace)
    # pip install torch  --extra-index-url https://download.pytorch.org/whl/cpu
 8. Add code to exception, logger and constants(till line 18)
+9. Create dir: utils then create __init__.py, utils.py and add code to it.
+10. Now we work on config related to GCP on ner.configuration.gcloud.py
+11. Add the data dir that will have the zipped and unzipped data. This data has
+    target col where annotation is already done but there are other tools (Spacy, Prodogy etc)
+    in the market which allows you to perform annotation.
+12. We will now setup the storage on GCP:
+    > Login to GCP console > choose project > buckets > create > 
+    > name: ner-using-bert-vikash > create > confirm
+    > Now upload the zipped data from local to this bucket.
+13. Now we need to configure this gcloud account to our local repo:
+    > on powershell/bash terminal: gcloud init 
+    (incase not recognised on bash, do this first: alias gcloud="gcloud.cmd") 
+    > [2] Create a new config > config name: nerproj > choose your account or new account
+    > Choose project or create new (check once on gcp console)
+    > If asked to config default region/zone: "n"
+14. Now with this configuration, lets try to check if we are able to download file from GCP bucket.
+*** Flowchart and Notebook added ***
+*** Also, within Huggingface library, for different usecases like computer vision or NLP, 
+we have various pre-trained models available to use. From that list, we are going to 
+use 'bert-based-case' model for our NER task. We will do the finetunning of this base model 
+with help of our custom data***
+15. Now we will perform notebook experiment. Add your notebook to G-Colab and connect with T4 GPU.
+
+
