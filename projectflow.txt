@@ -83,6 +83,7 @@ with help of our custom data***
       > Create > once created, connect -> SSH -> open browser window > authorize
       > once you get the machine terminal, start executing all the VM-machine-setup.sh file command one by one
     * Now we are ready to push our code and activate the CICD pipeline.
+    * Once completed then copy the VM ip and paste on browser: "ip address:80/docs"
 
 *** Please note, billing needs to be activated on GCP platform otherwise CICD will fail. ***
     
