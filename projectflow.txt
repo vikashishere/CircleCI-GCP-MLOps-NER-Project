@@ -37,8 +37,6 @@ with help of our custom data***
 16. Work on Data Ingestion component as per out workflow and test it on demo.py
     (artifacts and log dir will be created, add both to .gitignore: "artifacts/*, logs/*")
 17. Implement the Data Transformation component the same way.
-18. Add a 'mode' dir and inside, define the __init__.py and bert.py files.
-19. Add rest of the components following the workflows.
 
 
 
