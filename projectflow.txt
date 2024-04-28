@@ -33,5 +33,66 @@ we have various pre-trained models available to use. From that list, we are goin
 use 'bert-based-case' model for our NER task. We will do the finetunning of this base model 
 with help of our custom data***
 15. Now we will perform notebook experiment. Add your notebook to G-Colab and connect with T4 GPU.
+    Perform the notebook experiment as per available code.
+16. Work on Data Ingestion component as per out workflow and test it on demo.py
+    (artifacts and log dir will be created, add both to .gitignore: "artifacts/*, logs/*")
+17. Implement the Data Transformation component the same way.
+18. Add a 'model' dir and inside, define the __init__.py and bert.py files.
+19. Add rest of the components following the workflows and run once on demo.py
+    Once completed, check on GCP bucket if the pusher fucntion has pushed the model and tokenizer.
+20. Now we work on the prediction pipeline and user application:
+    > Add code to prediction_pipeline.py
+    > Add prediction cfg to config_entity.py
+    > Define the app host and app port in constants.__init__.py
+    > Add fastapi code to app.py
+    > run on terminal: "python app.py" and check on browser for -> http://localhost:8080/docs
+    > /train is route of training & /predict is for prediction b entering text manually.
+      Prediction at this stage would not be as expected as we trained only for 1 epoch.
+    > Also note, while doing prediction, code will download model.pt and save it 
+      within best_model dir. We need to do 2 things here, first to add "best_model/*" to .gitignore 
+      and second is to modify the code that it should'nt download again if there model is already there.
+21. Now we will work on end to end CICD pipeline and deployment:
+    * Add .circleci dir and inside config.yml file
+    * Setup the Dockerfile (inside we'll use google/cloud-sdk image instead of python 
+      so that we can avoid complex setup related to gcloud setup)
+    * Also setup the .dockerignore file
+    * Add new dir named 'scripts', inside keep the "VM-machine-setup.sh" file
+    * We will create one artifact registery(similar to ECR service) on GCP:
+      GCP console > artifact registry > create > name: 'ner-bert' > region: asia-south1
+      > keeping other settings on default > create > once created, go inside and copy url and within
+        "VM-machine-setup.sh" file, paste it on line 42, followed by /ner-bert:latest .
+      > Then copy that line entirely excluding "." and paste it on line 50, 72 and 76
+    * Open circleci.com > (sign up if not already, go to org setting > self hosted runner > select agreement)
+      > go to application > projects > create project > github > name: 'ner-bert-project' > select repository
+      > create project (for first time, go with option: 'Update your Github app repo permission')
+      > now we will setup our env var on this circleci project > go to project > project setting 
+      > Environment Variable > Add Environment Variable > Add these variables:
+          <> GCLOUD_SERVICE_KEY --> (GCP -> service account -> create a service account(if not already)
+                                     -> go to service account id -> keys -> add key -> create new key
+                                     -> JSON -> create -> open the downloaded file then ctrl+a, ctrl+c
+                                     -> paste it as value for the env var)
+          <> GOOGLE_COMPUTE_ZONE = asia-south1
+          <> GOOGLE_PROJECT_ID --> available on prev downloaded JSON file
+      > We will also create a self hosted runner on cricleci > from homepage, click on self-hosted runner
+      > create > name: vikash > resource class: ner-bert-proj > save and continue > copy the auth token 
+        (visible only once therefore keep a copy locally) and paste on sh script file on line 42 and 
+        "vikash/nerbert" should be resource_class on line 54 of config.yml
+    * Next is to create a VM instance on GCP:
+      GCP console > VM > create > name: 'ner-bert' > region: asia-south1 > Machine type: Standard-8GB
+      > (Boot Disk -> change -> OS: Ubuntu -> version: 20.04LTS -> size: 50GB) > Allow http/https traffic
+      > Create > once created, connect -> SSH -> open browser window > authorize
+      > once you get the machine terminal, start executing all the VM-machine-setup.sh file command one by one
+    * Now we are ready to push our code and activate the CICD pipeline.
+    
 
 
+
+
+
+** Workflows **
+> constants.
+> config_entity
+> artifact_entity
+> components
+> pipeline
+> app.py
