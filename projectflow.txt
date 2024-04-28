@@ -37,8 +37,19 @@ with help of our custom data***
 16. Work on Data Ingestion component as per out workflow and test it on demo.py
     (artifacts and log dir will be created, add both to .gitignore: "artifacts/*, logs/*")
 17. Implement the Data Transformation component the same way.
-18. Add a 'mode' dir and inside, define the __init__.py and bert.py files.
-19. Add rest of the components following the workflows.
+18. Add a 'model' dir and inside, define the __init__.py and bert.py files.
+19. Add rest of the components following the workflows and run once on demo.py
+    Once completed, check on GCP bucket if the pusher fucntion has pushed the model and tokenizer.
+20. Now we work on the prediction pipeline and user application:
+    > Add code to prediction_pipeline.py
+    > Add prediction cfg to config_entity.py
+    > Define the app host and app port in constants.__init__.py
+    > Add fastapi code to app.py
+    > run on terminal: "python app.py" and check on browser for -> http://localhost:8080/docs
+    > /train is route of training & /predict is for prediction b entering text manually.
+    > Also note, while doing prediction, code will download model.pt and save it 
+      within best_model dir. We need to do 2 things here, first to add "best_model/*" to .gitignore 
+      and second is to modify the code that it should'nt download again if there model is already there.
 
 
 
